@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>OpenLayers Example</title>
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		iframe {
+			position: fixed;
+			left: 20px;
+			top: 20px;
+			width: calc(100% - 40px);
+			height: calc(100% - 40px);
+			border: none;
+			overflow: hidden;
+		}
+		div {
+			position: fixed;
+			bottom: 3px;
+			left: 20px;
+			font-size: 10px;
+			font-family: Arial;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script>
+		var MAP_CONFIG = /** @type {nyc.template.facility.MapConfig} */ {
+			url: 'data/community-schools.csv',
+			geoclientAppId: '',
+			geoclientAppKey: '',
+			autoLocate: false,
+			icon: {stroke: '#fff', fill: 'rgb(54,173,213)'},
+			css: 'css/custom.css',
+			selectionColor: 'rgba(54,173,213,0.3)',
+			htmlRow: function(){
+				var row = $('<tr class="sch-row"></tr>'), name = this.get('name');
+				row.append(
+						'<td title="' + name + '">' + 
+						'<b>' + name + '</b><br>' +
+						this.get('address') + '<br>' + 
+						this.get('borough') + ', NY ' +
+						this.get('zip') +
+						'</td>'
+					);
+				row.append(
+						'<td class="sch-detail">' + 
+						'<b>CBO Partner:</b> ' + this.get('cbo_partner') + '<br>' + 
+						'<b>Type:</b> ' + this.get('type') + '<br>' +
+						'<b>Grade:</b> ' + this.get('grade') + '<br>' +
+						'<b>Pone:</b> ' + this.get('phone') + '<br>' +
+						'</td>'
+					);
+				return row;
+			},
+			facilityTypes: {
+				column: 'borough'
+			}
+		};
+	</script>
+</head>
+<body>
+	<iframe src="./"></iframe>
+</body>
+</html>
